@@ -19,7 +19,6 @@ module.exports = {
     description: "Send a random dog pic for a breed",
     cooldown: 5,
     async execute(message, args) {
-        console.log(message, args);
         const [ breed ] = args;
         if (!breed) {
             return message.channel.send('You have to supply a breed.');

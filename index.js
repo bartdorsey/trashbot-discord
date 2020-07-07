@@ -24,6 +24,16 @@ client.login(token);
 client.on('message', (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
+    if (message.channel.type === "dm") {
+        console.log(
+        `${message.author.username} sent ${message.content} to ${message.channel.recipient.username}`
+        );
+    } else {
+        console.log(
+        `${message.author.username} send ${message.content} to ${message.channel.name}`
+        );
+    }
+
     const args = message.content.slice(prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
 
