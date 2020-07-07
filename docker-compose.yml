@@ -3,3 +3,11 @@ services:
   bot:
     build: .
     env_file: .env
+    volumes:
+      - .:/app
+  redis:
+    image: redis:alpine
+    volumes:
+      - ./data:/data
+    ports:
+      - 6379:6379

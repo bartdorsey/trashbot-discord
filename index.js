@@ -1,10 +1,12 @@
 const fs = require('fs');
-const { Client, Collection } = require('discord.js');
+const { Client, Collection, Message } = require('discord.js');
 const { prefix, token } = require('./config');
 
 const client = new Client();
 client.commands = new Collection();
 const cooldowns = new Collection();
+
+// const { get, set } = require('./services/redis');
 
 const commandFiles = fs
 .readdirSync('./commands')
@@ -15,11 +17,21 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-client.once('ready', () => {
-    console.log('Ready!');
+client.once('ready', async () => {
+    console.log(`Ready with prefix ${prefix}`);
+    const me = client.users.cache.find(u => u.username === 'echobucket');
+    me.send(`Ready with prefix ${prefix}`);
 });
 
-client.login(token);
+// Create an event listener for new guild members
+client.on('guildMemberAdd', member => {
+    // Send the message to a designated channel on a server:
+    const channel = member.guild.channels.cache.find(ch => ch.name.startsWith('welcome'));
+    // Do nothing if the channel wasn't found on this server
+    if (!channel) return;
+    // Send the message, mentioning the member
+    channel.send(`Welcome to the Trash Gang, ${member}`);
+});
 
 client.on('message', (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -91,3 +103,5 @@ client.on('message', (message) => {
                     message.reply('there was an error trying to execute that command!');
                 }
             });
+
+client.login(token);
