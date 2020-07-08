@@ -5,6 +5,8 @@ services:
     env_file: .env
     volumes:
       - .:/app
+      - ./container_node_modules:/app/node_modules
+    command: npm run dev
   redis:
     image: redis:alpine
     volumes:
