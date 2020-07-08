@@ -18,7 +18,7 @@ module.exports = {
     description: 'Where we droppin?',
     cooldown: 5,
     execute(message, args) {
-        const randomIndex = Math.floor(Math.random() * POIs.length) + 1;
+        const randomIndex = Math.floor(Math.random() * POIs.length);
         const POI = POIs[randomIndex];
         message.channel.send(`We droppin' ${POI}, Let's Go!`);
     },
