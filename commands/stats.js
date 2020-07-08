@@ -56,6 +56,10 @@ const fetchStats = async username => {
         console.error(`Couldn't fetch touchStats for ${username}`);
     }
 
+    if (stats.platforms.length === 0) {
+        throw new Error(`Couldn't find any stats for player ${username}`);
+    }
+
     await set(`${username}-stats`, JSON.stringify(stats));
     return stats;
 }
@@ -102,10 +106,8 @@ module.exports = {
             }
         } catch (e) {
             console.error(e);
-            message.channel.send("Whoops, something went wrong trying to fetch stats");
+            return message.channel.send(e.message);
         }
-
-        // message.channel.send(username, renderImage(username, stats));
 
         message.channel.send({
             embed: {
