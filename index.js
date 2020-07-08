@@ -6,8 +6,6 @@ const client = new Client();
 client.commands = new Collection();
 const cooldowns = new Collection();
 
-// const { get, set } = require('./services/redis');
-
 const commandFiles = fs
 .readdirSync('./commands')
 .filter((file) => file.endsWith('.js'));
