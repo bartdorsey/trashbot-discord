@@ -1,16 +1,16 @@
 const POIs = [
-  "🏖Sweaty Sands",
-  "🏡Pleasant Park",
-  "🏭Steamy Stacks",
-  "🌽Frenzy Farm",
-  "🌿Holly Hedges",
-  "🏯The Fortilla",
-  "🎣Lazy Lake",
-  "🛍Retail Row",
-  "😹Catty Corner",
-  "🌷Misty Meadows",
-  "🕵The Authority",
-  "🏠Salty Springs",
+  "🏖 Sweaty Sands",
+  "🏡 Pleasant Park",
+  "🏭 Steamy Stacks",
+  "🌽 Frenzy Farm",
+  "🌿 Holly Hedges",
+  "🏯 The Fortilla",
+  "🎣 Lazy Lake",
+  "🛍 Retail Row",
+  "😹 Catty Corner",
+  "🌷 Misty Meadows",
+  "🕵 The Authority",
+  "🏠 Salty Springs",
 ];
 
 module.exports = {
