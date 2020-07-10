@@ -1,4 +1,4 @@
-const { prefix } = require("../config.js");
+import { prefix } from "../config";
 
 module.exports = {
     name: "help",
@@ -6,13 +6,13 @@ module.exports = {
     aliases: ["commands"],
     usage: "[command name]",
     cooldown: 5,
-    execute(message, args) {
+    execute(message: { client: { commands: any; }; author: { send: (arg0: any[], arg1: { split: boolean; }) => Promise<any>; tag: any; }; channel: { type: string; send: (arg0: string[], arg1: { split: boolean; }) => void; }; reply: (arg0: string) => void; }, args: string | any[]) {
         const data = [];
         const { commands } = message.client;
 
         if (!args.length) {
             data.push("Here's a list of all my commands:");
-            data.push(commands.map((command) => command.name).join(", "));
+            data.push(commands.map((command: { name: any; }) => command.name).join(", "));
             data.push(
                 `\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`
             );
@@ -23,7 +23,7 @@ module.exports = {
                     if (message.channel.type === "dm") return;
                     message.reply("I've sent you a DM with all my commands!");
                 })
-                .catch((error) => {
+                .catch((error: any) => {
                     console.error(
                         `Could not send help DM to ${message.author.tag}.\n`,
                         error
@@ -35,7 +35,7 @@ module.exports = {
         const name = args[0].toLowerCase();
         const command =
             commands.get(name) ||
-            commands.find((c) => c.aliases && c.aliases.includes(name));
+            commands.find((c: { aliases: string | any[]; }) => c.aliases && c.aliases.includes(name));
 
         if (!command) {
             return message.reply("that's not a valid command!");

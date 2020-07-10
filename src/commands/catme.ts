@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 const fetchCat = async () => {
     const response = await fetch(
@@ -18,7 +18,7 @@ module.exports = {
     name: "catme",
     description: "Send a random Cat Pic",
     cooldown: 5,
-    async execute(message, args) {
+    async execute(message: { channel: { send: (arg0: object|string) => void; }; }, args: any) {
         try {
             const url = await fetchCat();
             message.channel.send({

@@ -1,12 +1,13 @@
 const Client = require("fortnite");
-const { get, set } = require("../services/redis");
-const { MessageAttachment } = require('discord.js');
-const { fortniteTrackerAPIKey } = require("../config");
-const fortnite = new Client(fortniteTrackerAPIKey);
-const moment = require('moment');
-const Canvas = require("canvas");
+import { get, set } from '../services/redis';
+import { MessageAttachment } from 'discord.js';
+import { fortniteTrackerAPIKey } from '../config';
 
-const field = (name, value) => {
+const fortnite = new Client(fortniteTrackerAPIKey);
+import moment from 'moment';
+import Canvas from 'canvas';
+
+const field = (name: string, value: any) => {
     return {
         name,
         value,
@@ -14,8 +15,8 @@ const field = (name, value) => {
     }
 }
 
-const sumAcrossPlatforms = (platforms, matchType, value) => {
-    return platforms.reduce((sum, stat) => {
+const sumAcrossPlatforms = (platforms: any[], matchType: string, value: string) => {
+    return platforms.reduce((sum: any, stat: { stats: { [x: string]: { [x: string]: any; }; }; }) => {
         if (stat.stats[matchType]) {
             return sum + stat.stats[matchType][value];
         } else {
@@ -24,11 +25,17 @@ const sumAcrossPlatforms = (platforms, matchType, value) => {
     }, 0);
 }
 
-const fetchStats = async username => {
-    const stats = {
+const fetchStats = async (username: any) => {
+    interface Stats {
+        platforms: Array<object>,
+        timestamp: Number
+    }
+
+    const stats: Stats = {
         platforms: [],
         timestamp: Date.now()
     };
+
     try {
         const gamePadStats = await fortnite.user(username, "gamepad");
         if (!gamePadStats.code) {
@@ -64,7 +71,7 @@ const fetchStats = async username => {
     return stats;
 }
 
-const renderImage = (username, stats) => {
+const renderImage = (username: any, stats: { platforms: any; }) => {
     const canvas = Canvas.createCanvas(700, 250);
     const ctx = canvas.getContext("2d");
 
@@ -84,7 +91,7 @@ module.exports = {
     name: "stats",
     description: "List out someone's fortnite stats `stats <epicusername>`",
     cooldown: 5,
-    async execute(message, args) {
+    async execute(message: { author: { send: (arg0: string|object) => any; }; channel: { send: (arg0: string|object) => void; }; }, args: [any]) {
         const [username] = args;
         let stats;
         if (!username) {

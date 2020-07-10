@@ -1,0 +1,12 @@
+version: '3'
+services:
+  bot:
+    volumes:
+      - .:/app
+      - ./container_node_modules:/app/node_modules
+    command: bash -c "npm install --verbose && npm run dev"
+  redis:
+    volumes:
+      - ./data:/data
+    ports:
+      - 6379:6379

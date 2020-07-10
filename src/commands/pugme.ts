@@ -1,11 +1,11 @@
-const fetch = require("node-fetch");
-const dogme = require('./dogme');
+import fetch from "node-fetch";
+import dogme from './dogme';
 
 module.exports = {
   name: "pugme",
   description: "Send a random pug",
   cooldown: 5,
-  async execute(message, args) {
+  async execute(message: any, args: Array<any>) {
     return await dogme.execute(message, ['pug']);
   }
 };
