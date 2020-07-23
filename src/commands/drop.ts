@@ -13,7 +13,7 @@ const POIs = [
   "🏠 Salty Springs",
 ];
 
-module.exports = {
+export default {
     name: 'drop',
     description: 'Where we droppin?',
     cooldown: 5,

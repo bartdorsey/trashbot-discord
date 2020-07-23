@@ -1,33 +1,39 @@
 import fetch from "node-fetch";
 
-const fetchDog = async (breed: any) => {
-    const response = await fetch(
-        `https://dog.ceo/api/breed/${breed}/images/random`
-    );
-    if (response.ok) {
+const fetchDog = async (breed: string, subBreed: string) => {
+    let breedFragment = `${breed}`;
+    if (subBreed) {
+        breedFragment += `/${subBreed}`;
+    }
+    const url = `https://dog.ceo/api/breed/${breedFragment}/images/random`
+    const response = await fetch(url);
+    if (response.ok || response.status === 404) {
         const dog = await response.json();
         if (dog.status === "success") {
             return dog.message;
         } else {
             throw new Error(`Couldn't fetch a ${breed}`);
         }
+    } else {
+        throw new Error(`Couldn't fetch a ${breed}`);   
     }
 }
 
 export default {
     name: "dogme",
-    description: "Send a random dog pic for a breed",
+    description: "Fetches a random dog of a certain breed.",
+    usage: "`breed` `sub-breed`",
     cooldown: 5,
     async execute(
         message: { channel: { send: (arg0: object | string) => void } },
-        args: string[] | [any]
+        args: string[]
     ) {
-        const [breed] = args;
+        const [breed, subBreed] = args;
         if (!breed) {
             return message.channel.send("You have to supply a breed.");
         }
         try {
-            const url = await fetchDog(breed);
+            const url = await fetchDog(breed, subBreed);
             message.channel.send({
                 embed: {
                     image: {
@@ -36,8 +42,8 @@ export default {
                 },
             });
         } catch (e) {
-            message.channel.send("Whoops, I couldn't get a dog.");
+            message.channel.send(e.message);
             console.error(e);
         }
-    },
+    }
 };

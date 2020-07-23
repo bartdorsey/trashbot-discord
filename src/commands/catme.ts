@@ -14,7 +14,7 @@ const fetchCat = async () => {
     }
 }
 
-module.exports = {
+export default {
     name: "catme",
     description: "Send a random Cat Pic",
     cooldown: 5,

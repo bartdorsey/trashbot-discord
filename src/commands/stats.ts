@@ -87,7 +87,7 @@ const renderImage = (username: any, stats: { platforms: any; }) => {
     return attachment;
 }
 
-module.exports = {
+export default {
     name: "stats",
     description: "List out someone's fortnite stats `stats <epicusername>`",
     cooldown: 5,

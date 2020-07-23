@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
 import dogme from './dogme';
 
-module.exports = {
+export default {
   name: "pugme",
   description: "Send a random pug",
   cooldown: 5,

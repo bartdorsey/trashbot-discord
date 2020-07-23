@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     name: 'ping',
     description: 'Ping!',
     cooldown: 5,

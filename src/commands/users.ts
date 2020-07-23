@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   name: "users",
   description: "Lists all the users on the server",
   cooldown: 5,
