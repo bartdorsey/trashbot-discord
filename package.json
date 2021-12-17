@@ -16,7 +16,6 @@
   "dependencies": {
     "@types/node-fetch": "^2.5.7",
     "@types/redis": "^2.8.25",
-    "canvas": "^2.6.1",
     "canvas-txt": "^2.0.9",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",

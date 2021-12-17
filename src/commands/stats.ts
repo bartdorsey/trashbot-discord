@@ -1,11 +1,9 @@
 const Client = require("fortnite");
 import { get, set } from '../services/redis';
-import { MessageAttachment } from 'discord.js';
 import { fortniteTrackerAPIKey } from '../config';
 
 const fortnite = new Client(fortniteTrackerAPIKey);
 import moment from 'moment';
-import Canvas from 'canvas';
 
 const field = (name: string, value: any) => {
     return {
@@ -69,22 +67,6 @@ const fetchStats = async (username: any) => {
 
     await set(`${username}-stats`, JSON.stringify(stats));
     return stats;
-}
-
-const renderImage = (username: any, stats: { platforms: any; }) => {
-    const canvas = Canvas.createCanvas(700, 250);
-    const ctx = canvas.getContext("2d");
-
-    const text = `${username} has ${sumAcrossPlatforms(stats.platforms, "lifetime", "wins")} total wins.`
-    ctx.font = "20px Verdana";
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillText(text, 0, 50);
-
-    const attachment = new MessageAttachment(
-        canvas.toBuffer(),
-        "welcome-image.png"
-    );
-    return attachment;
 }
 
 export default {
