@@ -16,11 +16,13 @@
   "dependencies": {
     "@types/node-fetch": "^2.5.7",
     "@types/redis": "^2.8.25",
+    "axios": "^0.26.1",
     "canvas-txt": "^2.0.9",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.4.0",
     "fortnite": "^4.3.2",
+    "minecraft-server-status-simple": "^1.1.1",
     "moment": "^2.27.0",
     "node-canvas-text": "^1.0.2",
     "node-fetch": "^2.6.0",
