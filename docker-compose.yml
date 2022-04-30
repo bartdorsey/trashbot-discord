@@ -6,3 +6,7 @@ services:
     command: npm start
   redis:
     image: redis:alpine
+networks:
+  default:
+    external:
+      name: apps

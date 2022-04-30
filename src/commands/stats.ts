@@ -1,6 +1,7 @@
 const Client = require("fortnite");
 import { get, set } from '../services/redis';
 import { fortniteTrackerAPIKey } from '../config';
+import { Message, Channel } from 'discord.js';
 
 const fortnite = new Client(fortniteTrackerAPIKey);
 import moment from 'moment';
@@ -73,7 +74,7 @@ export default {
     name: "stats",
     description: "List out someone's fortnite stats `stats <epicusername>`",
     cooldown: 5,
-    async execute(message: { author: { send: (arg0: string|object) => any; }; channel: { send: (arg0: string|object) => void; }; }, args: [any]) {
+    async execute(message: Message, channel: Channel , args: [any]) {
         const [username] = args;
         let stats;
         if (!username) {
