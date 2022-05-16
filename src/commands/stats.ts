@@ -24,7 +24,7 @@ const sumAcrossPlatforms = (platforms: any[], matchType: string, value: string) 
     }, 0);
 }
 
-const fetchStats = async (username: any) => {
+const fetchStats = async (username: string) => {
     interface Stats {
         platforms: Array<object>,
         timestamp: Number
@@ -74,7 +74,10 @@ export default {
     name: "stats",
     description: "List out someone's fortnite stats `stats <epicusername>`",
     cooldown: 5,
-    async execute(message: Message, channel: Channel , args: [any]) {
+    async execute(message: Message, channel: Channel, args: [string]) {
+        if (!args || !args[0]) {
+            return message.author.send("Please supply a valid epic username");            
+        }
         const [username] = args;
         let stats;
         if (!username) {

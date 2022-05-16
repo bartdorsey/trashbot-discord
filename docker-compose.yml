@@ -3,6 +3,7 @@ services:
   bot:
     build: .
     env_file: .env
+    restart: unless-stopped
     command: npm start
   redis:
     image: redis:alpine
