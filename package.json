@@ -23,7 +23,7 @@
     "eslint": "^7.4.0",
     "fortnite": "^4.3.2",
     "minecraft-server-status-simple": "^1.1.1",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "node-canvas-text": "^1.0.2",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
