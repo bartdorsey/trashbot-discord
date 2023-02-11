@@ -26,7 +26,7 @@
     "moment": "^2.27.0",
     "node-canvas-text": "^1.0.2",
     "node-fetch": "^2.6.0",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.20",
     "opentype.js": "^1.3.3",
     "redis": "^3.0.2",
     "typescript": "^3.9.6"
